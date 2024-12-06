@@ -35,7 +35,7 @@ char    *extract_line(char *data)
     int     i;
 
     i = nline(data);
-    line = calloc(i + 1, sizeof(char));
+    line = ft_calloc(i + 1, sizeof(char));
     ft_memcpy(line, data, i);
     return (line);
 }
