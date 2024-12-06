@@ -12,6 +12,34 @@ int    nline(char *data)
         i++;
     return (i);
 }
+
+char    *update_line(char *data)
+{
+    int i;
+    int s;
+    char    *update;
+
+    s = 0;
+    i = nline(data);
+    if (!data[i])
+        return (free(data), NULL);
+    update = calloc(ft_strlen(data) - i + 1, sizeof(char));
+    while (data[i])
+        update[s++] = data[i++];
+    free(data);
+    return (update);
+}
+char    *extract_line(char *data)
+{
+    char    *line;
+    int     i;
+
+    i = nline(data);
+    line = calloc(i + 1, sizeof(char));
+    ft_memcpy(line, data, i);
+    return (line);
+}
+
 char    *read_fd(int fd, char *data)
 {
     int     byte;
@@ -36,46 +64,22 @@ char    *read_fd(int fd, char *data)
     free(tmp);
     return (data);
 }
-
-char    *extract_line(char *data)
-{
-    char    *line;
-    int     i;
-
-    i = nline(data);
-    line = calloc(i + 1, sizeof(char));
-    ft_memcpy(line, data, i);
-    line[i] = '\0';
-    return (line);
-}
-
-char    *update_line(char *data)
-{
-    int i;
-    int s;
-    char    *update;
-
-    s = 0;
-    i = nline(data);
-    if (!data[i])
-        return (free(data), NULL);
-    update = calloc(ft_strlen(data)- i + 1, sizeof(char));
-    while (data[i])
-        update[s++] = data[i++];
-    update[s++] = '\0';
-    free(data);
-    return (update);
-}
 char *get_next_line(int fd)
 {
     static char     *data;
     char            *line;
 
-    if (fd < 0 || BUFFER_SIZE <= 0 )
-        return (NULL);
+    if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
+		return (NULL);
     data = read_fd(fd, data);
     if (!data)
         return (NULL);
+    if (nline(data) == 0)
+    {
+        free(data);
+        data = NULL;
+        return (NULL);
+    }
     line = extract_line(data);
     data = update_line(data);
     return (line);
