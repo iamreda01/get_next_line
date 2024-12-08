@@ -6,16 +6,16 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:31:55 by rel-kass          #+#    #+#             */
-/*   Updated: 2024/12/06 22:42:00 by rel-kass         ###   ########.fr       */
+/*   Updated: 2024/12/08 21:07:14 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	*ft_calloc(int count, int size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*ptr;
-	int				i;
+	size_t				i;
 
 	i = 0;
 	if (count < 0 || size < 0)

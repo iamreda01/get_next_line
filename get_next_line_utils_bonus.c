@@ -6,16 +6,16 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:32:53 by rel-kass          #+#    #+#             */
-/*   Updated: 2024/12/06 22:49:49 by rel-kass         ###   ########.fr       */
+/*   Updated: 2024/12/08 21:09:05 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	*ft_calloc(int count, int size)
+void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*ptr;
-	int				i;
+	size_t				i;
 
 	i = 0;
 	if (count < 0 || size < 0)

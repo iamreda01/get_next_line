@@ -6,7 +6,7 @@
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 22:33:37 by rel-kass          #+#    #+#             */
-/*   Updated: 2024/12/06 22:48:14 by rel-kass         ###   ########.fr       */
+/*   Updated: 2024/12/08 21:08:47 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 
 char	*get_next_line(int fd);
-void	*ft_calloc(int count, int size);
+void	*ft_calloc(size_t count, size_t size);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
