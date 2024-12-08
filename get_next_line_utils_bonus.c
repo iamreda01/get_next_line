@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 22:31:55 by rel-kass          #+#    #+#             */
-/*   Updated: 2024/12/06 22:42:00 by rel-kass         ###   ########.fr       */
+/*   Created: 2024/12/06 22:32:53 by rel-kass          #+#    #+#             */
+/*   Updated: 2024/12/06 22:49:49 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_calloc(int count, int size)
 {

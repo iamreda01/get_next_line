@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-kass <rel-kass@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 22:32:05 by rel-kass          #+#    #+#             */
-/*   Updated: 2024/12/08 00:05:44 by rel-kass         ###   ########.fr       */
+/*   Created: 2024/12/06 22:34:52 by rel-kass          #+#    #+#             */
+/*   Updated: 2024/12/07 23:16:21 by rel-kass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	nline(char *data)
 {
@@ -34,7 +34,7 @@ char	*update_line(char *data)
 	i = nline(data);
 	if (!data[i])
 		return (free(data), NULL);
-	update = ft_calloc((ft_strlen(data) - i) + 1, sizeof(char));
+	update = ft_calloc(ft_strlen(data) - i + 1, sizeof(char));
 	while (data[i])
 		update[s++] = data[i++];
 	free(data);
@@ -74,27 +74,26 @@ char	*read_fd(int fd, char *data)
 		data = ft_strjoin(data, tmp);
 	}
 	free(tmp);
-	tmp = NULL;
 	return (data);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*data;
+	static char	*data[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || BUFFER_SIZE > INT_MAX)
 		return (NULL);
-	data = read_fd(fd, data);
-	if (!data)
+	data[fd] = read_fd(fd, data[fd]);
+	if (!data[fd])
 		return (NULL);
-	if (nline(data) == 0)
+	if (nline(data[fd]) == 0)
 	{
-		free(data);
-		data = NULL;
+		free(data[fd]);
+		data[fd] = NULL;
 		return (NULL);
 	}
-	line = extract_line(data);
-	data = update_line(data);
+	line = extract_line(data[fd]);
+	data[fd] = update_line(data[fd]);
 	return (line);
 }
